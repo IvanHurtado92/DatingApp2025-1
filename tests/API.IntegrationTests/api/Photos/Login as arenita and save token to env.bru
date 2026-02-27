@@ -12,8 +12,8 @@ post {
 
 body:json {
   {
-  	"email": "arenita@test.com",
-  	"password": "Pa$$w0rd"
+    "email": "arenita@test.com",
+    "password": "Pa$$w0rd"
   }
 }
 
@@ -30,6 +30,16 @@ script:post-response {
   }
 }
 
+tests {
+  test("Should be able to login", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+  
+  const data = res.body;
+  bru.setEnvVar('arenitaToken', data.token);
+}
+
 settings {
   encodeUrl: true
+  timeout: 0
 }
