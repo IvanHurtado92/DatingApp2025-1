@@ -10,7 +10,7 @@ import { FilterModal } from '../filter-modal/filter-modal';
 
 @Component({
   selector: 'app-member-list',
-  imports: [AsyncPipe, MemberCard, Paginator],
+  imports: [MemberCard, Paginator, FilterModal],
   templateUrl: './member-list.html',
   styleUrl: './member-list.css'
 })
@@ -45,5 +45,14 @@ export class MemberList implements OnInit {
 
   onClose() {
     console.log('Modal closed');
+  }
+
+  onFilterChange(data: MemberParams) {
+    console.log('Modal submitted data: ', data);
+  }
+
+  resetFilters() {
+    this.memberParams = new MemberParams();
+    this.loadMembers();
   }
 }
