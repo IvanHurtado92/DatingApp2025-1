@@ -22,6 +22,14 @@ export class MemberList implements OnInit {
   pageNumber = 1;
   pageSize = 5;
 
+  constructor() {
+    const filters = localStorage.getItem('filters');
+    if (filters) {
+      this.memberParams = JSON.parse(filters);
+      this.updatedParams = JSON.parse(filters);
+    }
+  }
+
   ngOnInit(): void {
     this.loadMembers();
   }
