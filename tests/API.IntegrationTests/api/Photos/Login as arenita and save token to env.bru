@@ -17,29 +17,15 @@ body:json {
   }
 }
 
-script:post-response {
-  const user = res.getBody();
-  
-  test("Has properties", function () {
-      expect(user).to.have.property('username');
-      expect(user).to.have.property('token');
-  });
-  
-  if (test("Has properties")) {
-      bru.setGlobalEnvVar('token', user.token);
-  }
-}
-
 tests {
   test("Should be able to login", function() {
     expect(res.getStatus()).to.equal(200);
   });
   
   const data = res.body;
-  bru.setEnvVar('arenitaToken', data.token);
+  bru.setVar('token', data.token);
 }
 
 settings {
   encodeUrl: true
-  timeout: 0
 }
